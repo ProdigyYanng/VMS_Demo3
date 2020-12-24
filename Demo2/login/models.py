@@ -23,7 +23,7 @@ class TravelLog(models.Model):  # 行驶记录表
     Record_id = models.IntegerField(verbose_name='行驶记录编号', primary_key=True)
     Start_Time = models.DateTimeField(verbose_name='开始时间', auto_now_add=True)
     Traveled_Time = models.IntegerField(verbose_name='已运行分钟数')
-    Traverl_Site = models.ForeignKey('Site_Info', on_delete=True)  # 行驶场地
+    Travel_Site = models.ForeignKey('Site_Info', on_delete=True)  # 行驶场地
     Car_id = models.ForeignKey('Car_Info', on_delete=True)  # 车辆行驶记录id
 
 
