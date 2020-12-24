@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-# todo 第一步要添加所有的表 make给数据库 参见数据表.xlsx
+# todo 第一步要添加所有的表 make给数据库 参见数据表.xlsx 完成！
 
 class CarInfo(models.Model):  # 车辆信息表
     Car_id = models.IntegerField(verbose_name='汽车编号', primary_key=True)
