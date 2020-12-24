@@ -15,16 +15,16 @@ class CarFailureLog(models.Model):  # 故障记录表
     Record_id = models.IntegerField(verbose_name='记录编号', primary_key=True)
     Fault_Time = models.DateTimeField(verbose_name='故障时间', auto_now_add=True)
     Fault_Type = models.CharField(verbose_name='故障信息', max_length=1024)
-    Fault_Station = models.ForeignKey('Station_Info', on_delete=True)  # 故障站点
-    Car_id = models.ForeignKey('Car_Info', on_delete=True)  # 故障车辆id
+    Fault_Station = models.ForeignKey('StationInfo', on_delete=True)  # 故障站点
+    Car_id = models.ForeignKey('CarInfo', on_delete=True)  # 故障车辆id
 
 
 class TravelLog(models.Model):  # 行驶记录表
     Record_id = models.IntegerField(verbose_name='行驶记录编号', primary_key=True)
     Start_Time = models.DateTimeField(verbose_name='开始时间', auto_now_add=True)
     Traveled_Time = models.IntegerField(verbose_name='已运行分钟数')
-    Travel_Site = models.ForeignKey('Site_Info', on_delete=True)  # 行驶场地
-    Car_id = models.ForeignKey('Car_Info', on_delete=True)  # 车辆行驶记录id
+    Travel_Site = models.ForeignKey('SiteInfo', on_delete=True)  # 行驶场地
+    Car_id = models.ForeignKey('CarInfo', on_delete=True)  # 车辆行驶记录id
 
 
 class SiteInfo(models.Model):  # 场地信息表
@@ -36,7 +36,7 @@ class SiteInfo(models.Model):  # 场地信息表
 
 class StationInfo(models.Model):  # 站点信息表
     Station_id = models.IntegerField(verbose_name='站点编号', primary_key=True)
-    Site_id = models.ForeignKey('Site_Info', on_delete=True)  # 所属场地
+    Site_id = models.ForeignKey('SiteInfo', on_delete=True)  # 所属场地
     Station_Name = models.CharField(verbose_name='站点名称', max_length=64)
     Station_PosX = models.DecimalField(verbose_name='站点经度', max_digits=10, decimal_places=6)
     Station_PosY = models.DecimalField(verbose_name='站点纬度', max_digits=10, decimal_places=6)
