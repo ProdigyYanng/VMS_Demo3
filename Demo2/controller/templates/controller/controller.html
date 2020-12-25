@@ -1,37 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>管理员控制台</title>
+    <title>首页界面</title>
+
+    <link rel="stylesheet" href="{% static "controller/css/base.css" %}">
 </head>
+
 <body>
+    <!--顶部-->
+    <header class="header left">
+        <div class="left nav">
+            <ul>
+                <li class="nav_active"><i class="nav_1"></i><a href="index.html">数据概览</a> </li>
+                <!-- <li><i class="nav_2"></i><a href="carContrl.html">车辆监控</a> </li> -->
+                <!-- <li><i class="nav_3"></i><a href="map.html">地图界面</a> </li> -->
+            </ul>
+        </div>
+        <div class="header_center left">
+            <h2><strong>无人车智能管理系统</strong></h2>
+            <p class="color_font"><small>Unmanned vehicle intelligent management system</small></p>
+        </div>
+        <div class="right nav text_right">
+            <ul>
+                <!-- <li><i class="nav_7"></i><a href="static.html">查询统计</a> </li> -->
+                <li><i class="nav_8"></i><a href="message.html">信息录入</a> </li>
+                <!-- <li><i class="nav_4"></i><a href="table1.html">表格界面</a> </li> -->
+            </ul>
+        </div>
+        <!--<nav class="left nav">-->
+        <!--<ul>-->
+        <!--<li class="nav_active"><i class="nav_1"></i><a href="index.html">数据概览</a> </li>-->
+        <!--<li><i class="nav_2"></i><a href="carContrl.html">车辆监控</a> </li>-->
+        <!--<li><i class="nav_3"></i><a href="map.html">地图界面</a> </li>-->
+        <!--<li><i class="nav_4"></i><a href="javascript:void(0)">表格界面</a><ul class="li_ul">-->
+        <!--<li><a href="table1.html">表格一</a> </li>-->
+        <!--<li><a href="table2.html">表格二</a> </li>-->
 
-<table border="l">
-    <thead>
-    <tr>
-        <th>序号</th>
-        <th>id</th>
-        <th>牌照</th>
-        <th>车型</th>
-        <th>电量</th>
-    </tr>
-    </thead>
+        <!--</ul> </li>-->
+        <!--&lt;!&ndash;<li><i class="nav_5"></i><a href="#">车载视频</a> </li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><i class="nav_6"></i><a href="#">视频监控</a> </li>&ndash;&gt;-->
+        <!--<li><i class="nav_7"></i><a href="static.html">查询统计</a> </li>-->
+        <!--<li><i class="nav_8"></i><a href="message.html">信息录入</a> </li>-->
+        <!--</ul>-->
+        <!--</nav>-->
+    </header>
+    <!--内容部分-->
+    <div class="con left">
+        <!--选择时间-->
+        <div class="select_time">
+            <div class="static_top left">
+                <i></i><span>总体概况</span>
+            </div>
+        </div>
+        <!--数据总概-->
+        <div class="con_div">
+            <div class="con_div_text left">
+                <div class="con_div_text01 left">
+                    <img src="{% static "controller/img/info_1.png" %}" class="left text01_img">
+                    <div class="left text01_div">
+                        <p>车辆总数(辆)</p>
+                        <p>{{ CarsNum }}</p>
+                    </div>
+                </div>
+                <div class="con_div_text01 right">
+                    <img src="{% static "controller/img/info_2.png" %}" class="left text01_img">
+                    <div class="left text01_div">
+                        <p>车辆使用数(辆)</p>
+                        <p>{{ CarsUsedNum }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="con_div_text left">
+                <div class="con_div_text01 left">
+                    <img src="{% static "controller/img/info_4.png" %}" class="left text01_img">
+                    <div class="left text01_div">
+                        <p>行驶里程总数(km)</p>
+                        <p class="sky">{{ CarsMileageNum }}</p>
+                    </div>
+                </div>
+                <div class="con_div_text01 right">
+                    <img src="{% static "controller/img/info_5.png" %}" class="left text01_img">
+                    <div class="left text01_div">
+                        <p>行驶里程平均数(km)</p>
+                        <p class="sky">{{ CarsMileageAverNum }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="con_div_text left">
 
-    <tbody>
-    {% for car in all_cars %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ car.pk }}</td>
-            <td>{{ car.Car_License }}</td>
-            <td>{{ car.Car_Type }}</td>
-            <td>{{ car.Car_Electric_Quantity }}</td>
-        </tr>
-    {% endfor %}
+                <div class="con_div_text01 left">
+                    <img src="{% static "controller/img/info_6.png" %}" class="left text01_img">
+                    <div class="left text01_div">
+                        <p>行驶时长总数(s)</p>
+                        <p class="org">{{ CarsTimeNum }}</p>
+                    </div>
+                </div>
+                <div class="con_div_text01 right">
+                    <img src="{% static "controller/img/info_7.png" %}" class="left text01_img">
+                    <div class="left text01_div">
+                        <p>行驶平均数(s)</p>
+                        <p class="org">{{ CarsAverTimeNum }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--统计分析图-->
+        <div class="div_any">
+            <div class="left div_any01">
+                <div class="div_any_child">
+                    <div class="div_any_title"><img src="{% static "controller/img/title_1.png" %}">管理员信息 </div>
+                    <!-- 管理员信息展示 -->
+                <div style="width: 60px;height:60px;padding: 10px;margin: 40px auto 10px;">
+                <img src="{% static "controller/img/touxiang.png" %}" alt="" style="width:60px; height:60px">
+                </div>
+
+                <div style="padding: 10px;margin-left: 40px;color: #ffffff;">您的身份：管理员</div>
+                <div style="padding: 10px;margin-left: 40px;color: #ffffff;">注册时间：2020/12/22</div>
+
+                </div>
+                <div class="div_any_child">
+                    <div class="div_any_title"><img src="{% static "controller/img/title_2.png" %}">车辆总览信息 </div>
+                    <div class="table_p">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>车牌号</th>
+                                    <th>剩余电量</th>
+                                    <th>查看详情</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% for car in all_cars %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ car.Car_License }}</td>
+                                        <td>{{ car.Car_Electric_Quantity }}</td>
+                                        <td><a href="#">详情</a></td>
+                                    </tr>
+                                {% endfor %}
+
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>98</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>98</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>98</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
 
 
-    </tbody>
-</table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="div_any02 left ">
+                <div class="div_any_child div_height">
+                    <div class="div_any_title any_title_width"><img src="{% static "controller/img/title_3.png" %}">车辆行驶地图 </div>
+                    <!-- <div id="map_div"></div> -->
+                    <div id="container" style="width: 100%;height: 100%;"></div>
+                </div>
+            </div>
+            <div class="right div_any01">
+
+                <!-- <div class="div_any_child">
+                    <div class="div_any_title"><img src="img/title_5.png">车辆报警统计 </div>
+                    <p id="char4" class="p_chart"></p>
+                </div> -->
+                <div class="div_any_child">
+                    <div class="div_any_title"><img src="{% static "controller/img/title_4.png" %}">可约车辆</div>
+                    <div class="table_p">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>车牌号</th>
+                                    <th>剩余电量</th>
+                                    <th>查看详情</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for car in CarsCanUse %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ car.Car_License }}</td>
+                                        <td>{{ car.Car_Electric_Quantity }}</td>
+                                        <td><a href="#">详情</a></td>
+                                    </tr>
+                                {% endfor %}
 
 
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="div_any_child">
+                    <div class="div_any_title"><img src="{% static "controller/img/title_4.png" %}">故障车辆</div>
+                    <div class="table_p">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>车牌号</th>
+                                    <th>剩余电量</th>
+                                    <th>查看详情</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                            {% for record in all_FailureRecords %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ record.Car_id.Car_License }}</td>
+                                        <td>{{ record.Car_id.Car_Electric_Quantity }}</td>
+                                        <td><a href="#">详情</a></td>
+                                    </tr>
+                                {% endfor %}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>1</td>#}
+{#                                    <td>京A12345</td>#}
+{#                                    <td>134.2</td>#}
+{#                                    <td><a href="#">详情</a></td>#}
+{#                                </tr>#}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    <script src="js/jquery/jQuery-2.2.0.min.js"></script>
+    <script src="js/echarts-all.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/index.js"></script>
+
+    <!-- 百度地图 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback">
+    </script>
+    <script src="js/map.js"></script>
+
+    <!-- 高德地图 -->
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c16dc4b9a093cc94d9f36e00e7bc2fd0"></script>
+    <script>
+        var map = new AMap.Map('container', {
+        resizeEnable: true, //是否监控地图容器尺寸变化
+        zoom:11, //初始化地图层级
+        center: [116.397428, 39.90923] //初始化地图中心点
+        });
+        var marker = new AMap.Marker({
+        position:[116.39, 39.9]//位置
+    })
+    map.add(marker);//添加到地图
+    </script>
 </body>
+
 </html>

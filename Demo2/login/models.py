@@ -9,6 +9,8 @@ class CarInfo(models.Model):  # 车辆信息表
     Car_License = models.CharField(verbose_name='汽车牌照', max_length=50)
     Car_Type = models.CharField(verbose_name='车型号', max_length=50)
     Car_Electric_Quantity = models.FloatField(verbose_name='剩余电量')
+    Car_Mileage = models.FloatField(verbose_name='里程数', default=0)
+    Car_IsUse = models.BooleanField(verbose_name='车辆是否在使用', default=False)
 
 
 class CarFailureLog(models.Model):  # 故障记录表
