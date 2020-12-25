@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员控制台</title>
+</head>
+<body>
+
+<table border="l">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>id</th>
+        <th>牌照</th>
+        <th>车型</th>
+        <th>电量</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for car in all_cars %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ car.pk }}</td>
+            <td>{{ car.Car_License }}</td>
+            <td>{{ car.Car_Type }}</td>
+            <td>{{ car.Car_Electric_Quantity }}</td>
+        </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+
+
+</body>
+</html>
