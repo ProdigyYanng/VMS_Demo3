@@ -1,17 +1,21 @@
 from django.shortcuts import render, HttpResponse
 from login import models
 from django.db.models import Sum
-
+from datetime import datetime
 # Create your views here.
 
 def index(request):
+
+    # 测试
+    userid = 1
+
+
     # for car in all_cars:
     #     print(car)
     #     print(car.pk)
     #     print(car.Car_License)
     #     print(car.Car_Type)
     #     print(car.Car_Electric_Quantity)
-    data = {}
     all_cars = models.CarInfo.objects.order_by('-Car_Electric_Quantity')[:5]  # 5个车辆基本信息
     CarsNum = models.CarInfo.objects.all().count()  # 汽车总数
     CarsUsedNum = models.CarInfo.objects.filter(Car_IsUse=True).count()# 汽车使用数
@@ -33,6 +37,12 @@ def index(request):
 
     # FailuedCars = # 故障车辆
     # return render(request, 'controller/controller.html', {'all_cars': all_cars})
+
+
+    UserRegisterTime = models.UserInfo.objects.filter(User_id=userid) # 用户注册时间
+    date = datetime.strftime(UserRegisterTime[0].User_Register_Time, '%Y/%m/%d')
+    UserName = models.UserInfo.objects.filter(User_id=userid)[0].User_Name # 用户昵称
+    # print(date)
     return render(request, 'controller/controller.html', context={
         'all_cars': all_cars,
         'CarsNum': CarsNum,
@@ -43,5 +53,14 @@ def index(request):
         'CarsAverTimeNum': CarsAverTimeNum,
         'CarsCanUse': CarsCanUse,
         'all_FailureRecords': all_FailureRecords,
+        'date': date,
+        'UserName': UserName,
+
 
     })
+
+# todo 1、研究一下在管理员控制面板主页上 点击详情按钮就在地图上显示标记****
+# todo 2、本文件index函数中date获取的是用户id是1的账户注册时间，后期需要改成从登陆页面传来的注册时间来进行获取用户id
+# todo 3、需要增加一个车辆信息修改的页面，背景仍然是蓝色调
+# todo 4、是否为user需要增加一个用户身份的字段，来显示您的身份
+# todo 5、是否需要一个头像字段（img）

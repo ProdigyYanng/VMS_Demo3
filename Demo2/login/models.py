@@ -44,8 +44,9 @@ class StationInfo(models.Model):  # 站点信息表
     Station_PosY = models.DecimalField(verbose_name='站点纬度', max_digits=10, decimal_places=6)
 
 
-class UserInfo(models.Model):
+class UserInfo(models.Model): # 用户表
     User_id = models.IntegerField(verbose_name='用户编号', primary_key=True)
     User_Name = models.CharField(verbose_name='用户昵称', max_length=64)
     User_Tel = models.CharField(verbose_name='联系方式', max_length=16)
+    User_Register_Time = models.DateTimeField(verbose_name="账户注册时间", auto_now_add=True)
     User_Ordered_Car_id = models.ManyToManyField('CarInfo')  # 用户预约的车编号
