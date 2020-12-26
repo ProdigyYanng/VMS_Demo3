@@ -11,6 +11,8 @@ class CarInfo(models.Model):  # 车辆信息表
     Car_Electric_Quantity = models.FloatField(verbose_name='剩余电量')
     Car_Mileage = models.FloatField(verbose_name='里程数', default=0)
     Car_IsUse = models.BooleanField(verbose_name='车辆是否在使用', default=False)
+    Car_Current_PosX = models.DecimalField(verbose_name='汽车当前位置经度', max_digits=10, decimal_places=6)
+    Car_Current_PosY = models.DecimalField(verbose_name='汽车当前位置纬度', max_digits=10, decimal_places=6)
 
 
 class CarFailureLog(models.Model):  # 故障记录表

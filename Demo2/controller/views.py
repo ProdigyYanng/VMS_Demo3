@@ -16,7 +16,9 @@ def index(request):
     #     print(car.Car_License)
     #     print(car.Car_Type)
     #     print(car.Car_Electric_Quantity)
-    all_cars = models.CarInfo.objects.order_by('-Car_Electric_Quantity')[:5]  # 5个车辆基本信息
+
+    all_cars = models.CarInfo.objects.order_by('-Car_Electric_Quantity')  # 5个车辆基本信息
+    Display_Cals = all_cars[:5] # 展示的车辆
     CarsNum = models.CarInfo.objects.all().count()  # 汽车总数
     CarsUsedNum = models.CarInfo.objects.filter(Car_IsUse=True).count()# 汽车使用数
     CarsMileageNum = models.CarInfo.objects.all().aggregate(Sum('Car_Mileage'))['Car_Mileage__sum']# 行驶总里程数
@@ -26,7 +28,10 @@ def index(request):
     CarsCanUse = models.CarInfo.objects.filter(Car_IsUse=False).order_by('-Car_Electric_Quantity')[:5]# 所有可约车辆信息
 
     # FailureRecord = models.CarFailureLog.objects.values('Car_id').distinct()[:5]# 所有故障车辆信息
-    all_FailureRecords = models.CarFailureLog.objects.all()[:5] # todo 这里的故障车辆的外键的反向查询的去重操作还没实现 需要仔细研究
+    all_FailureRecords = models.CarFailureLog.objects.all()
+    Display_FailureRecords = all_FailureRecords[:5] # todo 这里的故障车辆的外键的反向查询的去重操作还没实现 需要仔细研究
+
+
     # for record in all_FailureRecords:
     #     print(record.Car_id.Car_License)
         # car = models.CarInfo.objects.get(Car_id=car['Car_id'])
@@ -44,20 +49,22 @@ def index(request):
     UserName = models.UserInfo.objects.filter(User_id=userid)[0].User_Name # 用户昵称
     UserIdentity = models.UserInfo.objects.filter(User_id=userid)[0].User_Identity # 用户身份
     # print(date)
+
+
     return render(request, 'controller/controller.html', context={
-        'all_cars': all_cars,
+        'all_cars': Display_Cals, # 要展示的车辆
         'CarsNum': CarsNum,
         'CarsUsedNum': CarsUsedNum,
         'CarsMileageNum': CarsMileageNum,
-        'CarsMileageAverNum': CarsMileageAverNum,
+        'CarsMileageAverNum': round(CarsMileageAverNum, 3),
         'CarsTimeNum': CarsTimeNum,
-        'CarsAverTimeNum': CarsAverTimeNum,
+        'CarsAverTimeNum': round(CarsAverTimeNum, 3),
         'CarsCanUse': CarsCanUse,
-        'all_FailureRecords': all_FailureRecords,
+        'all_FailureRecords': Display_FailureRecords,
         'date': date,
         'UserName': UserName,
         'UserIdentity': UserIdentity,
-
+        'CarsAllInfo': all_cars,
     })
 
 # todo 1、研究一下在管理员控制面板主页上 点击详情按钮就在地图上显示标记****
