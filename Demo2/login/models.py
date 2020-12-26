@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-# todo 第一步要添加所有的表 make给数据库 参见数据表.xlsx 完成！
+# todo 完成！ 第一步要添加所有的表 make给数据库 参见数据表.xlsx
 
 class CarInfo(models.Model):  # 车辆信息表
     Car_id = models.IntegerField(verbose_name='汽车编号', primary_key=True)
@@ -50,3 +50,4 @@ class UserInfo(models.Model): # 用户表
     User_Tel = models.CharField(verbose_name='联系方式', max_length=16)
     User_Register_Time = models.DateTimeField(verbose_name="账户注册时间", auto_now_add=True)
     User_Ordered_Car_id = models.ManyToManyField('CarInfo')  # 用户预约的车编号
+    User_Identity = models.CharField(verbose_name='用户身份', max_length=16)

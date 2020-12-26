@@ -42,6 +42,7 @@ def index(request):
     UserRegisterTime = models.UserInfo.objects.filter(User_id=userid) # 用户注册时间
     date = datetime.strftime(UserRegisterTime[0].User_Register_Time, '%Y/%m/%d')
     UserName = models.UserInfo.objects.filter(User_id=userid)[0].User_Name # 用户昵称
+    UserIdentity = models.UserInfo.objects.filter(User_id=userid)[0].User_Identity # 用户身份
     # print(date)
     return render(request, 'controller/controller.html', context={
         'all_cars': all_cars,
@@ -55,12 +56,12 @@ def index(request):
         'all_FailureRecords': all_FailureRecords,
         'date': date,
         'UserName': UserName,
-
+        'UserIdentity': UserIdentity,
 
     })
 
 # todo 1、研究一下在管理员控制面板主页上 点击详情按钮就在地图上显示标记****
 # todo 2、本文件index函数中date获取的是用户id是1的账户注册时间，后期需要改成从登陆页面传来的注册时间来进行获取用户id
 # todo 3、需要增加一个车辆信息修改的页面，背景仍然是蓝色调
-# todo 4、是否为user需要增加一个用户身份的字段，来显示您的身份
+# todo 完成！ 4、是否为user需要增加一个用户身份的字段，来显示您的身份
 # todo 5、是否需要一个头像字段（img）
