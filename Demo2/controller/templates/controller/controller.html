@@ -3,6 +3,7 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <title>首页界面</title>
 
     <link rel="stylesheet" href="{% static "controller/css/base.css" %}">
@@ -116,7 +117,7 @@
                     <img src="{% static "controller/img/touxiang.png" %}" alt="" style="width:60px; height:60px">
                 </div>
 
-                <div style="padding: 10px;margin-left: 40px;color: #ffffff;">您的身份：管理员</div>
+                <div style="padding: 10px;margin-left: 40px;color: #ffffff;">您的身份：{{ UserIdentity }}</div>
                 <div style="padding: 10px;margin-left: 40px;color: #ffffff;">您的昵称：{{ UserName }}</div>
                 <div style="padding: 10px;margin-left: 40px;color: #ffffff;">注册时间：{{ date }}</div>
 
@@ -140,7 +141,7 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ car.Car_License }}</td>
                                 <td>{{ car.Car_Electric_Quantity }}</td>
-                                <td><a class="btn btn-danger btn-sm" href="#">详情</a></td>
+                                <td><button id="MoreBtn" class="btn btn-danger btn-sm">详情</button></td>
                             </tr>
                         {% endfor %}
 
@@ -202,7 +203,7 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ car.Car_License }}</td>
                                 <td>{{ car.Car_Electric_Quantity }}</td>
-                                <td><a class="btn btn-danger btn-sm" href="#">详情</a></td>
+                                <td><button id="MoreBtn" class="btn btn-danger btn-sm">详情</button></td>
                             </tr>
                         {% endfor %}
 
@@ -253,7 +254,7 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ record.Car_id.Car_License }}</td>
                                 <td>{{ record.Car_id.Car_Electric_Quantity }}</td>
-                                <td><a class="btn btn-danger btn-sm" href="#">详情</a></td>
+                                <td><button id="MoreBtn" class="btn btn-danger btn-sm">详情</button></td>
                             </tr>
                         {% endfor %}
                         {#                                <tr>#}
@@ -293,29 +294,37 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery/jQuery-2.2.0.min.js"></script>
-    <script src="js/echarts-all.js"></script>
-    <script src="js/base.js"></script>
-    <script src="js/index.js"></script>
+
+    <script src="{% static "controller/js/jquery/jQuery-2.2.0.min.js" %}"></script>
+    <script src="{% static "controller/js/echarts-all.js" %}"></script>
+    <script src="{% static "controller/js/base.js" %}"></script>
+    <script src="{% static "controller/js/index.js" %}"></script>
 
     <!-- 百度地图 -->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback">
-    </script>
-    <script src="js/map.js"></script>
+    {#    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback">#}
+    {#    </script>#}
+    {#    <script src="js/map.js"></script>#}
 
     <!-- 高德地图 -->
-    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c16dc4b9a093cc94d9f36e00e7bc2fd0"></script>
-    <script>
-        var map = new AMap.Map('container', {
-            resizeEnable: true, //是否监控地图容器尺寸变化
-            zoom: 11, //初始化地图层级
-            center: [116.397428, 39.90923] //初始化地图中心点
-        });
-        var marker = new AMap.Marker({
-            position: [116.39, 39.9]//位置
-        })
-        map.add(marker);//添加到地图
-    </script>
+{#    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c16dc4b9a093cc94d9f36e00e7bc2fd0"></script>#}
+    <script src = 'https://webapi.amap.com/maps?v=2.0&key=c16dc4b9a093cc94d9f36e00e7bc2fd0' type="text/javascript" > </script>
+
+{#    导入高德地图API#}
+<script type="text/javascript">
+    // todo 学习点：django把数据传到外部js的方法是  先在html中的script标签把数据渲染成js对象 然后 就可以在外部js文件中进行使用
+    var CarsNum={{ CarsNum }}; // 汽车数量
+    // todo 需要的参数有：可约车辆、故障车辆 的  分别的坐标、 然后在js中添加marker 逻辑是：点击详情就自动缩放到该车辆的marker
+    var CarsPos = {};
+    {% for car in CarsAllInfo %}
+        var carid = {{ car.Car_id }};
+        var carPosX = {{ car.Car_Current_PosX }};
+        var carPosY = {{ car.Car_Current_PosY }};
+        var carPosInfo = {'carid': carid, 'carPosX': carPosX, 'carPosY':carPosY};
+        CarsPos[{{ forloop.counter }} - 1] = carPosInfo ;
+    {% endfor %}
+
+</script>
+    <script src = "{% static "controller/js/controller.js" %}" type="text/javascript"></script>
 </body>
 
 </html>
