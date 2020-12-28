@@ -14,7 +14,7 @@
 <header class="header left">
     <div class="left nav">
         <ul>
-            <li class="nav_active"><i class="nav_1"></i><a href="index.html">数据概览</a></li>
+            <li class="nav_active"><i class="nav_1"></i><a href="{% url 'controller:index' %}">数据概览</a></li>
             <!-- <li><i class="nav_2"></i><a href="carContrl.html">车辆监控</a> </li> -->
             <!-- <li><i class="nav_3"></i><a href="map.html">地图界面</a> </li> -->
         </ul>
@@ -26,7 +26,7 @@
     <div class="right nav text_right">
         <ul>
             <!-- <li><i class="nav_7"></i><a href="static.html">查询统计</a> </li> -->
-            <li><i class="nav_8"></i><a href="message.html">信息录入</a></li>
+{#            <li><i class="nav_8"></i><a href="message.html">信息录入</a></li>#}
             <!-- <li><i class="nav_4"></i><a href="table1.html">表格界面</a> </li> -->
         </ul>
     </div>
@@ -50,11 +50,19 @@
 <!--内容部分-->
 <div class="con left">
     <!--选择时间-->
-    <div class="select_time">
+    <div class="select_time" >
         <div class="static_top left">
-            <i></i><span>总体概况</span>
+            <i></i><a href="{% url 'controller:index' %}"  style="color: #25f3e6;">总体概况</a>
+        </div>
+        <div class="static_top left">
+            <i></i><a href="CRUD"  style="color: #25f3e6;">信息录入</a>
         </div>
     </div>
+{#    <div class="select_time" style="float: left">#}
+{#        <div class="static_top left">#}
+{#            <i></i><span>总体概况</span>#}
+{#        </div>#}
+{#    </div>#}
     <!--数据总概-->
     <div class="con_div">
         <div class="con_div_text left">

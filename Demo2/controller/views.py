@@ -72,3 +72,7 @@ def index(request):
 # todo 3、需要增加一个车辆信息修改的页面，背景仍然是蓝色调
 # todo 完成！ 4、是否为user需要增加一个用户身份的字段，来显示您的身份
 # todo 5、是否需要一个头像字段（img）
+
+
+def CRUD(request):
+    return HttpResponse('This is CRUD dashboard.')
