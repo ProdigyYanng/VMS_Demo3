@@ -53,3 +53,5 @@ class UserInfo(models.Model): # 用户表
     User_Register_Time = models.DateTimeField(verbose_name="账户注册时间", auto_now_add=True)
     User_Ordered_Car_id = models.ManyToManyField('CarInfo')  # 用户预约的车编号
     User_Identity = models.CharField(verbose_name='用户身份', max_length=16)
+    UserAccount = models.CharField(verbose_name='用户账号', max_length=16, unique=True)
+    UserPwd = models.CharField(verbose_name='用户密码', max_length=16)
