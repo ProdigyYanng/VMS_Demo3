@@ -5,7 +5,9 @@ from django.db.models.query import EmptyQuerySet
 # Create your views here.
 # todo 完成！ 2020/12/24 明天的任务是 1、把templates文件夹\static以及settings的设置搞清楚 2、url的配置搞清楚 3、 写controller的views
 
-def
+# @login_required
+# def index(request):
+#     return render(request, 'login/login.html')
 
 def index(request):
     if request.method == 'POST':

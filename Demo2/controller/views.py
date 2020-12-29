@@ -1,11 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from login import models
 from django.db.models import Sum
 from datetime import datetime
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
 def index(request):
     # 测试
     userid = 1

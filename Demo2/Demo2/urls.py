@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth.decorators import login_required
+
 
 urlpatterns = [
-    path('', include('login.urls')), # 进入登录首页
+    path('', include('login.urls')),  # 进入登录首页
     path('admin/', admin.site.urls),
-    path('controller/', include('controller.urls')), # 点击进入管理员控制首页
+    path('controller/', include('controller.urls')),  # 点击进入管理员控制首页
     # path('accounts/', include('login.urls')),
 ]
+
+

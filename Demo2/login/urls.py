@@ -5,7 +5,7 @@ app_name: str = 'login'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login/', views.login, name='login'),
+    # path('login/', views.login, name='login'),
 
 
     # path('login/', views.login, name='LoginIndex'),
