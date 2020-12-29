@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>信息录入</title>
+    <link rel="stylesheet" href="{% static "controller/css/base_CRUD.css" %}">
+</head>
+
+<body style="background-color: #030829">
+    <!-- 顶部 -->
+    <header class="header left">
+        <div class="left nav">
+            <ul>
+                <li class="nav_active"><i class="nav_1"></i><a href="{% url "controller:index" %}">数据概览</a> </li>
+                <!-- <li><i class="nav_2"></i><a href="carContrl.html">车辆监控</a> </li> -->
+                <!-- <li><i class="nav_3"></i><a href="map.html">地图界面</a> </li> -->
+            </ul>
+        </div>
+        <div class="header_center left">
+            <h2><strong>无人车智能管理系统</strong></h2>
+            <p class="color_font"><small>Unmanned vehicle intelligent management system</small></p>
+        </div>
+        <div class="right nav text_right">
+            <ul></ul>
+        </div>
+    </header>
+
+    <div class="con left">
+        <!--选择时间-->
+        <div class="select_time">
+            <div class="static_top left">
+                <i></i><a style="color: #25f3e6;" href="{% url "controller:index" %}">总体概况</a>
+            </div>
+            <div class="static_top left">
+                <i></i><a href="CRUD"  style="color: #25f3e6;">信息录入</a>
+            </div>
+        </div>
+        <!--数据总概-->
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img src="{% static "controller/img/info_1.png" %}" class="left text01_img">
+                <div class="left text01_div">
+                    <p>车辆总数(辆)</p>
+                    <p>12356</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="{% static "controller/img/info_2.png" %}" class="left text01_img">
+                <div class="left text01_div">
+                    <p>车辆使用数(辆)</p>
+                    <p>12356</p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img src="{% static "controller/img/info_4.png" %}" class="left text01_img">
+                <div class="left text01_div">
+                    <p>行驶里程总数(km)</p>
+                    <p class="sky">12356</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="{% static "controller/img/info_5.png" %}" class="left text01_img">
+                <div class="left text01_div">
+                    <p>行驶里程平均数(km)</p>
+                    <p class="sky">12356</p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+
+            <div class="con_div_text01 left">
+                <img src="{% static "controller/img/info_6.png" %}" class="left text01_img">
+                <div class="left text01_div">
+                    <p>行驶时长总数(s)</p>
+                    <p class="org">12356</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="{% static "controller/img/info_7.png" %}" class="left text01_img">
+                <div class="left text01_div">
+                    <p>行驶平均数(s)</p>
+                    <p class="org">12356</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 信息展示与修改面板 -->
+    <div class="con left">
+        <div class="select_time">
+            <div class="static_top left">
+                <i></i><a id="1" href="#" style="color: #25f3e6;">车辆信息</a>
+            </div>
+            <div class="static_top left">
+                <i></i><a id="2" href="#" style="color: #25f3e6;">故障信息</a>
+            </div>
+            <div class="static_top left">
+                <i></i><a id="3" href="#" style="color: #25f3e6;">用户信息</a>
+            </div>
+            <div class="static_top left">
+                <i></i><a id="4" href="#" style="color: #25f3e6;">行驶记录</a>
+            </div>
+            <div class="static_top left">
+                <i></i><a id="5" href="#" style="color: #25f3e6;">场地信息</a>
+            </div>
+            <div class="static_top left">
+                <i></i><a id="6" href="#" style="color: #25f3e6;">站点信息</a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div style="width: 100%;height: 5%;color: #04425f;"></div>
+
+    <div><button>增加信息</button></div>
+
+    <div class="CarInfoShowBackground" id="box1">
+        <table border="1" class="InfoShowTable">
+            <tr>
+              <th>车辆id</th>
+              <th>车牌号</th>
+              <th>车型</th>
+              <th>电量</th>
+              <th>里程数</th>
+              <th>是否在使用</th>
+              <th>当前位置</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>京·A8888</td>
+              <td>I</td>
+              <td>100</td>
+              <td>300</td>
+              <td>是</td>
+              <td>(213.231333,40.414222)</td>
+              <td><button>编辑</button> <button>删除</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>京·A8888</td>
+                <td>I</td>
+                <td>100</td>
+                <td>300</td>
+                <td>是</td>
+                <td>(213.231333,40.414222)</td>
+                <td><button>编辑</button> <button>删除</button></td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>京·A8888</td>
+                <td>I</td>
+                <td>100</td>
+                <td>300</td>
+                <td>是</td>
+                <td>(213.231333,40.414222)</td>
+                <td><button>编辑</button> <button>删除</button></td>
+              </tr>
+          </table>
+
+
+    </div>
+
+    <div class="FailerInfoShowBackground" id="box2">
+        <table border="1" class="InfoShowTable">
+            <tr>
+              <th>记录编号</th>
+              <th>故障时间</th>
+              <th>故障内容</th>
+              <th>故障站点id</th>
+              <th>故障车辆id</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>12：00</td>
+              <td>爆胎</td>
+              <td>3</td>
+              <td>4</td>
+              <td><button>编辑</button> <button>删除</button></td>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>12：00</td>
+                <td>爆胎</td>
+                <td>3</td>
+                <td>4</td>
+                <td><button>编辑</button> <button>删除</button></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>12：00</td>
+                <td>爆胎</td>
+                <td>3</td>
+                <td>4</td>
+                <td><button>编辑</button> <button>删除</button></td>
+              </tr>
+
+          </table>
+    </div>
+
+    <div class="UserInfoShowBackground" id="box3">
+        <table border="1" class="InfoShowTable">
+            <tr>
+              <th>用户编号</th>
+              <th>用户昵称</th>
+              <th>联系方式</th>
+              <th>注册时间</th>
+              <th>用户预约车辆id</th>
+              <th>用户身份</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>会飞的企鹅</td>
+              <td>1888888888</td>
+              <td>2020/12/25</td>
+              <td>3</td>
+              <td>管理员</td>
+              <td><button>编辑</button> <button>删除</button> </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>会飞的企鹅</td>
+                <td>1888888888</td>
+                <td>2020/12/25</td>
+                <td>3</td>
+                <td>管理员</td>
+                <td><button>编辑</button> <button>删除</button></td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>会飞的企鹅</td>
+                <td>1888888888</td>
+                <td>2020/12/25</td>
+                <td>3</td>
+                <td>管理员</td>
+                <td><button>编辑</button> <button>删除</button></td>
+              </tr>
+
+
+          </table>
+    </div>
+
+
+    <div class="TravelInfoShowBackground" id="box4">
+        <table border="1" class="InfoShowTable">
+            <tr>
+              <th>行驶记录编号编号</th>
+              <th>开始时间</th>
+              <th>已运行时间（分钟）</th>
+              <th>行驶场地id</th>
+              <th>车辆id</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>13:00</td>
+              <td>18</td>
+              <td>3</td>
+              <td>2</td>
+              <td><button>编辑</button> <button>删除</button></td>
+            </tr>
+
+
+          </table>
+    </div>
+
+    <div class="SiteInfoShowBackground" id="box5">
+        <table border="1" class="InfoShowTable">
+            <tr>
+              <th>场地编号</th>
+              <th>场地名称</th>
+              <th>场地位置坐标</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>海淀区</td>
+              <td>(214.232133,41.2322222)</td>
+              <td><button>编辑</button> <button>删除</button></td>
+            </tr>
+
+
+          </table>
+    </div>
+
+    <div class="StationInfoShowBackground" id="box6">
+        <table border="1" class="InfoShowTable">
+            <tr>
+              <th>站点编号</th>
+              <th>所属场地id</th>
+              <th>站点名称</th>
+              <th>站点位置坐标</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>北京大学</td>
+              <td>(214.232133,41.2322222)</td>
+              <td><button>编辑</button> <button>删除</button></td>
+            </tr>
+
+
+          </table>
+    </div>
+
+
+    <script type="text/javascript" src="{% static "controller/js/ShowAndHide.js" %}">
+
+
+    </script>
+
+
+
+</body>
+
+
+</html>

@@ -20,4 +20,5 @@ urlpatterns = [
     path('', include('login.urls')), # 进入登录首页
     path('admin/', admin.site.urls),
     path('controller/', include('controller.urls')), # 点击进入管理员控制首页
+    # path('accounts/', include('login.urls')),
 ]
