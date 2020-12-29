@@ -1,7 +1,8 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, reverse
 from login import models
 from django.contrib.auth.decorators import login_required
 from django.db.models.query import EmptyQuerySet
+from django.contrib import auth
 # Create your views here.
 # todo 完成！ 2020/12/24 明天的任务是 1、把templates文件夹\static以及settings的设置搞清楚 2、url的配置搞清楚 3、 写controller的views
 
@@ -26,7 +27,7 @@ def index(request):
 
         if DB_pwd != pwd:
             return HttpResponse('密码有误')
-        elif DB_pwd == pwd:
+        elif DB_pwd == pwd: # 校验成功
             return redirect('controller:index')
     return render(request, 'login/login.html')
         # 校验成功：登陆成功
