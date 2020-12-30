@@ -3,12 +3,34 @@ from login import models
 from django.db.models import Sum
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-
+import time
 # Create your views here.
 
+
+def ClearSession(func): # 60秒后验证失败需要重新登录
+    def wrapper(request):
+        f = func(request)
+        request.session.set_expiry(60)
+        return f
+    return wrapper
+
+
+@ClearSession
 def index(request):
+    # print(request.session.get('user'))
+    # request.session.flush()
+    # print(request.session.get('user'))
+    # print(request)
     # 测试
-    userid = 1
+
+    username = request.session.get('user')
+    if username == None:
+        # 说明没有经过验证 跳转到登录
+        request.session.flush()
+        return redirect('login:index')
+
+
+    userid = models.UserInfo.objects.filter(UserAccount=username)[0].User_id
 
     # for car in all_cars:
     #     print(car)
@@ -71,6 +93,11 @@ def index(request):
 # todo 完成！ 4、是否为user需要增加一个用户身份的字段，来显示您的身份
 # todo 5、是否需要一个头像字段（img）
 
-
+@ClearSession
 def CRUD(request):
+    username = request.session.get('user')
+    if username == None:
+        # 说明没有经过验证 跳转到登录
+        request.session.flush()
+        return redirect('login:index')
     return render(request, 'controller/CRUD.html')
