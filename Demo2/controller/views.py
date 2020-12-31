@@ -10,7 +10,7 @@ import time
 def ClearSession(func): # 60秒后验证失败需要重新登录
     def wrapper(request):
         f = func(request)
-        request.session.set_expiry(60)
+        request.session.set_expiry(600)
         return f
     return wrapper
 
@@ -111,6 +111,13 @@ def CRUD(request):
 
     # User_Ordered_Car_id =
 
+    CarsNum = models.CarInfo.objects.all().count()  # 汽车总数
+    CarsUsedNum = models.CarInfo.objects.filter(Car_IsUse=True).count()  # 汽车使用数
+    CarsMileageNum = models.CarInfo.objects.all().aggregate(Sum('Car_Mileage'))['Car_Mileage__sum']  # 行驶总里程数
+    CarsMileageAverNum = CarsMileageNum / CarsNum  # 行驶平均里程数
+    CarsTimeNum = models.TravelLog.objects.all().aggregate(Sum('Traveled_Time'))['Traveled_Time__sum']  # 行驶总时长 min
+    CarsAverTimeNum = CarsTimeNum / CarsNum  # 每辆车平均行驶时长 min
+
     data = {
         'cars_obj': cars_obj,
         'CarFailureLogs_obj': CarFailureLogs_obj,
@@ -118,7 +125,16 @@ def CRUD(request):
         'SiteInfos_obj': SiteInfos_obj,
         'StationInfos_obj': StationInfos_obj,
         'UserInfos_obj': UserInfos_obj,
+
+        'CarsNum': CarsNum,
+        'CarsUsedNum': CarsUsedNum,
+        'CarsMileageNum': CarsMileageNum,
+        'CarsMileageAverNum': round(CarsMileageAverNum, 3),
+        'CarsTimeNum': CarsTimeNum,
+        'CarsAverTimeNum': round(CarsAverTimeNum, 3),
     }
+
+
 
     return render(request, 'controller/CRUD.html', context=data)
 

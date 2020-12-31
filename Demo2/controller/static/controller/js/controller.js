@@ -21,9 +21,12 @@ var center = [CenterX/CarsNum, CenterY/CarsNum]; // 中心点
         for (var i = 0; i < CarsNum; i++)
         {
             position = [CarsPos[i]['carPosX'], CarsPos[i]['carPosY']];
+            icon_str = "";
+            if (CarsPos[i]['carIsUse'] == 'True') icon_str = "https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png";
             markers[i] = new AMap.Marker({
                 position: position,
-                title: CarsPos[i]['carid'],
+                title: '序号：' + CarsPos[i]['carid']+' 车牌：'+ CarsPos[i]['carLicense'] + ' 电量：' + CarsPos[i]['carEQ'],
+                icon: icon_str,
             })
         }
 

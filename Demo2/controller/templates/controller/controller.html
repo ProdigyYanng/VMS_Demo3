@@ -325,11 +325,21 @@
     var CarsNum={{ CarsNum }}; // 汽车数量
     // todo 需要的参数有：可约车辆、故障车辆 的  分别的坐标、 然后在js中添加marker 逻辑是：点击详情就自动缩放到该车辆的marker
     var CarsPos = {};
+
     {% for car in CarsAllInfo %}
         var carid = {{ car.Car_id }};
         var carPosX = {{ car.Car_Current_PosX }};
         var carPosY = {{ car.Car_Current_PosY }};
-        var carPosInfo = {'carid': carid, 'carPosX': carPosX, 'carPosY':carPosY};
+        var carIsUse = '{{ car.Car_IsUse }}';
+        var carLicense = '{{ car.Car_License }}';
+        var carEQ = {{ car.Car_Electric_Quantity }};
+        var carPosInfo = {'carid': carid,
+                        'carPosX': carPosX,
+                        'carPosY': carPosY,
+                        'carIsUse': carIsUse,
+                        'carLicense': carLicense,
+                        'carEQ': carEQ,
+                            };
         CarsPos[{{ forloop.counter }} - 1] = carPosInfo ;
     {% endfor %}
 

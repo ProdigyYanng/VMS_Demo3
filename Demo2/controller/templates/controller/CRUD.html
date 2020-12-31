@@ -43,14 +43,14 @@
                 <img src="{% static "controller/img/info_1.png" %}" class="left text01_img">
                 <div class="left text01_div">
                     <p>车辆总数(辆)</p>
-                    <p>12356</p>
+                    <p>{{ CarsNum }}</p>
                 </div>
             </div>
             <div class="con_div_text01 right">
                 <img src="{% static "controller/img/info_2.png" %}" class="left text01_img">
                 <div class="left text01_div">
                     <p>车辆使用数(辆)</p>
-                    <p>12356</p>
+                    <p>{{ CarsUsedNum }}</p>
                 </div>
             </div>
         </div>
@@ -59,14 +59,14 @@
                 <img src="{% static "controller/img/info_4.png" %}" class="left text01_img">
                 <div class="left text01_div">
                     <p>行驶里程总数(km)</p>
-                    <p class="sky">12356</p>
+                    <p class="sky">{{ CarsMileageNum }}</p>
                 </div>
             </div>
             <div class="con_div_text01 right">
                 <img src="{% static "controller/img/info_5.png" %}" class="left text01_img">
                 <div class="left text01_div">
                     <p>行驶里程平均数(km)</p>
-                    <p class="sky">12356</p>
+                    <p class="sky">{{ CarsMileageAverNum }}</p>
                 </div>
             </div>
         </div>
@@ -76,14 +76,14 @@
                 <img src="{% static "controller/img/info_6.png" %}" class="left text01_img">
                 <div class="left text01_div">
                     <p>行驶时长总数(s)</p>
-                    <p class="org">12356</p>
+                    <p class="org">{{ CarsTimeNum }}</p>
                 </div>
             </div>
             <div class="con_div_text01 right">
                 <img src="{% static "controller/img/info_7.png" %}" class="left text01_img">
                 <div class="left text01_div">
                     <p>行驶平均数(s)</p>
-                    <p class="org">12356</p>
+                    <p class="org">{{ CarsAverTimeNum }}</p>
                 </div>
             </div>
         </div>
