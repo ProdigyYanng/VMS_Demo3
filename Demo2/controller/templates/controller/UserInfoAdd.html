@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增信息</title>
+</head>
+<body>
+
+<form action="" method="post"> {% csrf_token %}
+
+
+    <p>用户昵称：<input type="text" name="User_Name"></p>
+    <p>联系方式：<input type="text" name="User_Tel"></p>
+    <p>注册时间：<input type="text" name="User_Register_Time"></p>
+    <p>预约车辆id： <input type="text" name="User_Ordered_Car_id"></p>
+    <p>用户身份： <input type="text" name="User_Identity"></p>
+    <p>用户账号： <input type="text" name="UserAccount"></p>
+    <p>用户密码： <input type="text" name="UserPwd"></p>
+    <button>提交</button>
+
+
+</form>
+
+
+</body>
+</html>

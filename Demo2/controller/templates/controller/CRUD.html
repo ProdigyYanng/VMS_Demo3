@@ -34,7 +34,7 @@
                 <i></i><a style="color: #25f3e6;" href="{% url "controller:index" %}">总体概况</a>
             </div>
             <div class="static_top left">
-                <i></i><a href="CRUD"  style="color: #25f3e6;">信息录入</a>
+                <i></i><a href="{% url "controller:CRUD" %}"  style="color: #25f3e6;">信息录入</a>
             </div>
         </div>
         <!--数据总概-->
@@ -117,11 +117,12 @@
 
     <div style="width: 100%;height: 5%;color: #04425f;"></div>
 
-    <div><button>增加信息</button></div>
+{#    <div><a href="{% url "controller:InfoAdd" %}">增加信息</a></div>#}
 
     <div class="CarInfoShowBackground" id="box1">
         <table border="1" class="InfoShowTable">
             <tr>
+                <th>序号</th>
               <th>车辆id</th>
               <th>车牌号</th>
               <th>车型</th>
@@ -129,79 +130,50 @@
               <th>里程数</th>
               <th>是否在使用</th>
               <th>当前位置</th>
-              <th>操作</th>
+                <th><span>修改</span><i> </i><button onclick = "window.location.href = '{% url "controller:CarInfoAdd" %}'" >增加</button></th>
             </tr>
+            {% for car in cars_obj %}
             <tr>
-              <td>1</td>
-              <td>京·A8888</td>
-              <td>I</td>
-              <td>100</td>
-              <td>300</td>
-              <td>是</td>
-              <td>(213.231333,40.414222)</td>
-              <td><button>编辑</button> <button>删除</button></td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ car.Car_id }}</td>
+                <td>{{ car.Car_License }}</td>
+                <td>{{ car.Car_Type }}</td>
+                <td>{{ car.Car_Electric_Quantity }}</td>
+                <td>{{ car.Car_Mileage }}</td>
+                <td>{{ car.Car_IsUse }}</td>
+                <td>({{ car.Car_Current_PosX }},{{ car.Car_Current_PosY }})</td>
+                <td><button>编辑</button> <button onclick = "window.location.href = '{% url "controller:CarInfoDel" %}?id={{ forloop.counter }}'">删除</button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>京·A8888</td>
-                <td>I</td>
-                <td>100</td>
-                <td>300</td>
-                <td>是</td>
-                <td>(213.231333,40.414222)</td>
-                <td><button>编辑</button> <button>删除</button></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>京·A8888</td>
-                <td>I</td>
-                <td>100</td>
-                <td>300</td>
-                <td>是</td>
-                <td>(213.231333,40.414222)</td>
-                <td><button>编辑</button> <button>删除</button></td>
-              </tr>
+            {% endfor %}
           </table>
-
-
     </div>
 
     <div class="FailerInfoShowBackground" id="box2">
         <table border="1" class="InfoShowTable">
             <tr>
+                <th>序号</th>
               <th>记录编号</th>
               <th>故障时间</th>
               <th>故障内容</th>
               <th>故障站点id</th>
               <th>故障车辆id</th>
-              <th>操作</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>12：00</td>
-              <td>爆胎</td>
-              <td>3</td>
-              <td>4</td>
-              <td><button>编辑</button> <button>删除</button></td>
+              <th><span>修改</span><i> </i><button onclick = "window.location.href = '{% url "controller:FailureInfoAdd" %}'" >增加</button></th>
             </tr>
 
-            <tr>
-                <td>1</td>
-                <td>12：00</td>
-                <td>爆胎</td>
-                <td>3</td>
-                <td>4</td>
-                <td><button>编辑</button> <button>删除</button></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>12：00</td>
-                <td>爆胎</td>
-                <td>3</td>
-                <td>4</td>
-                <td><button>编辑</button> <button>删除</button></td>
-              </tr>
+
+            {% for CarFailure in CarFailureLogs_obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ CarFailure.Record_id }}</td>
+                    <td>{{ CarFailure.Fault_Time }}</td>
+                    <td>{{ CarFailure.Fault_Type }}</td>
+                    <td>{{ CarFailure.Fault_Station.Station_id }}</td>
+                    <td>{{ CarFailure.Car_id.Car_id }}</td>
+                <td><button>编辑</button> <button onclick = "window.location.href = '{% url "controller:FailureInfoDel" %}?id={{ forloop.counter }}'">删除</button> </td>
+                </tr>
+
+            {% endfor %}
+
 
           </table>
     </div>
@@ -209,43 +181,35 @@
     <div class="UserInfoShowBackground" id="box3">
         <table border="1" class="InfoShowTable">
             <tr>
+                <th>序号</th>
               <th>用户编号</th>
               <th>用户昵称</th>
               <th>联系方式</th>
               <th>注册时间</th>
-              <th>用户预约车辆id</th>
+              <th>用户账号</th>
+              <th>用户密码</th>
+{#              <th>用户预约车辆id</th>#}
               <th>用户身份</th>
-              <th>操作</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>会飞的企鹅</td>
-              <td>1888888888</td>
-              <td>2020/12/25</td>
-              <td>3</td>
-              <td>管理员</td>
-              <td><button>编辑</button> <button>删除</button> </td>
+              <th><span>修改</span><i> </i><button onclick = "window.location.href = '{% url "controller:UserInfoAdd" %}'" >增加</button></th>
             </tr>
 
-            <tr>
-                <td>2</td>
-                <td>会飞的企鹅</td>
-                <td>1888888888</td>
-                <td>2020/12/25</td>
-                <td>3</td>
-                <td>管理员</td>
-                <td><button>编辑</button> <button>删除</button></td>
-              </tr>
 
-              <tr>
-                <td>3</td>
-                <td>会飞的企鹅</td>
-                <td>1888888888</td>
-                <td>2020/12/25</td>
-                <td>3</td>
-                <td>管理员</td>
-                <td><button>编辑</button> <button>删除</button></td>
-              </tr>
+            {% for user in UserInfos_obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.User_id }}</td>
+                    <td>{{ user.User_Name }}</td>
+                    <td>{{ user.User_Tel }}</td>
+                    <td>{{ user.User_Register_Time }}</td>
+{#                    <td>{{ user.User_Ordered_Car_id }}</td>#}
+                    <td>{{ user.User_Identity }}</td>
+                    <td>{{ user.UserAccount }}</td>
+                    <td>{{ user.UserPwd }}</td>
+                <td><button>编辑</button> <button onclick = "window.location.href = '{% url "controller:UserInfoDel" %}?id={{ user.User_id }}'">删除</button> </td>
+                </tr>
+
+            {% endfor %}
+
 
 
           </table>
@@ -255,21 +219,27 @@
     <div class="TravelInfoShowBackground" id="box4">
         <table border="1" class="InfoShowTable">
             <tr>
+                <th>序号</th>
               <th>行驶记录编号编号</th>
               <th>开始时间</th>
               <th>已运行时间（分钟）</th>
               <th>行驶场地id</th>
               <th>车辆id</th>
-              <th>操作</th>
+               <th><span>修改</span><i> </i><button onclick = "window.location.href = '{% url "controller:TravelInfoAdd" %}'" >增加</button></th>
             </tr>
+
+            {% for travellog in TravelLogs_obj %}
             <tr>
-              <td>1</td>
-              <td>13:00</td>
-              <td>18</td>
-              <td>3</td>
-              <td>2</td>
-              <td><button>编辑</button> <button>删除</button></td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ travellog.Record_id }}</td>
+                <td>{{ travellog.Start_Time }}</td>
+                <td>{{ travellog.Traveled_Time }}</td>
+                <td>{{ travellog.Travel_Site.Site_id }}</td>
+                <td>{{ travellog.Car_id.Car_id }}</td>
+            <td><button>编辑</button> <button onclick = "window.location.href = '{% url "controller:TravelInfoDel" %}?id={{ forloop.counter }}'">删除</button></td>
             </tr>
+
+            {% endfor %}
 
 
           </table>
@@ -278,17 +248,24 @@
     <div class="SiteInfoShowBackground" id="box5">
         <table border="1" class="InfoShowTable">
             <tr>
+                <th>序号</th>
               <th>场地编号</th>
               <th>场地名称</th>
               <th>场地位置坐标</th>
-                <th>操作</th>
+                 <th><span>修改</span><i> </i><button onclick = "window.location.href = '{% url "controller:SiteInfoAdd" %}'" >增加</button></th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>海淀区</td>
-              <td>(214.232133,41.2322222)</td>
-              <td><button>编辑</button> <button>删除</button></td>
-            </tr>
+
+            {% for site in SiteInfos_obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ site.Site_id }}</td>
+                    <td>{{ site.Site_Name }}</td>
+                    <td>({{ site.Center_PosX }},{{ site.Center_PosY }})</td>
+                    <td><button>编辑</button> <button onclick = "window.location.href = '{% url "controller:SiteInfoDel" %}?id={{ forloop.counter }}'">删除</button></td>
+                </tr>
+
+            {% endfor %}
+
 
 
           </table>
@@ -297,19 +274,25 @@
     <div class="StationInfoShowBackground" id="box6">
         <table border="1" class="InfoShowTable">
             <tr>
+                <th>序号</th>
               <th>站点编号</th>
               <th>所属场地id</th>
               <th>站点名称</th>
               <th>站点位置坐标</th>
-              <th>操作</th>
+               <th><span>修改</span><i> </i><button onclick = "window.location.href = '{% url "controller:StationInfoAdd" %}'" >增加</button></th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>北京大学</td>
-              <td>(214.232133,41.2322222)</td>
-              <td><button>编辑</button> <button>删除</button></td>
-            </tr>
+
+            {% for station in StationInfos_obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ station.Station_id }}</td>
+                    <td>{{ station.Site_id.Site_id }}</td>
+                    <td>{{ station.Station_Name }}</td>
+                    <td>({{ station.Station_PosX }},{{ station.Station_PosY }})</td>
+                    <td><button>编辑</button> <button onclick = "window.location.href = '{% url "controller:StationInfoDel" %}?id={{ forloop.counter }}'">删除</button></td>
+                </tr>
+
+            {% endfor %}
 
 
           </table>
