@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增信息</title>
+</head>
+<body>
+
+<form action="" method="post"> {% csrf_token %}
+
+
+    <p>所属场地id：<input type="text" name="Site_id"></p>
+    <p>站点名称：<input type="text" name="Station_Name"></p>
+    <p>站点经度：<input type="text" name="Station_PosX"></p>
+    <p>站点纬度：<input type="text" name="Station_PosY"></p>
+{#    <p>故障车辆id：<input type="text" name="Car_id "></p>#}
+
+    <button>提交</button>
+
+
+</form>
+
+
+</body>
+</html>

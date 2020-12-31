@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect, reverse
+from django.shortcuts import render, HttpResponse, redirect, reverse, HttpResponseRedirect
 from login import models
 from django.contrib.auth.decorators import login_required
 from django.db.models.query import EmptyQuerySet
@@ -28,7 +28,9 @@ def index(request):
         if DB_pwd != pwd:
             return HttpResponse('密码有误')
         elif DB_pwd == pwd: # 校验成功
-            return redirect('controller:index')
+            request.session['user'] = user
+            return HttpResponseRedirect('/controller/')
+            # return redirect(reverse('controller:index', kwargs={'userid': '123'}))
     return render(request, 'login/login.html')
         # 校验成功：登陆成功
         # 校验失败：返回登录页面

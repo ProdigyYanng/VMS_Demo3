@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增信息</title>
+</head>
+<body>
+
+<form action="" method="post"> {% csrf_token %}
+
+
+    <p>故障时间：<input type="text" name="Fault_Time"></p>
+    <p>故障信息：<input type="text" name="Fault_Type"></p>
+    <p>故障车站：<input type="text" name="Fault_Station"></p>
+    <p>故障车辆id： <input type="text" name="Car_id"></p>
+{#    <p>故障车辆id：<input type="text" name="Car_id "></p>#}
+
+    <button>提交</button>
+
+
+</form>
+
+
+</body>
+</html>
