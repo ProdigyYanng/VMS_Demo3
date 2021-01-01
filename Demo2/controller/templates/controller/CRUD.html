@@ -139,8 +139,8 @@
             {% for car in cars_obj %}
             <tr>
                 <td>
-{#                    <button>编辑</button> #}
-                    <button onclick = "window.location.href = '{% url "controller:CarInfoDel" %}?id={{ forloop.counter }}'">删除</button></td>
+                    <button onclick = "window.location.href = '{% url "controller:CarInfoEdit" %}?id={{ car.Car_id }}'">编辑</button>
+                    <button onclick = "window.location.href = '{% url "controller:CarInfoDel" %}?id={{ car.Car_id }}'">删除</button></td>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ car.Car_id }}</td>
                 <td>{{ car.Car_License }}</td>
@@ -175,7 +175,7 @@
             {% for CarFailure in CarFailureLogs_obj %}
                 <tr>
                 <td>
-{#                    <button>编辑</button> #}
+                    <button onclick = "window.location.href = '{% url "controller:FailureInfoEdit" %}?id={{ CarFailure.Record_id }}'">编辑</button>
                     <button onclick = "window.location.href = '{% url "controller:FailureInfoDel" %}?id={{ forloop.counter }}'">删除</button>
                 </td>
                     <td>{{ forloop.counter }}</td>
@@ -216,8 +216,8 @@
             {% for user in UserInfos_obj %}
                 <tr>
                 <td>
-{#                    <button>编辑</button> #}
-                    <button onclick = "window.location.href = '{% url "controller:UserInfoDel" %}?id={{ user.User_id }}'">删除</button>
+                    <button onclick = "window.location.href = '{% url "controller:UserInfoEdit" %}?id={{ user.User_id }}'">编辑</button>
+                    <button onclick = "window.location.href = '{% url "controller:UserInfoDel" %}?id={{ forloop.counter }}'">删除</button>
                 </td>
                     <td>{{ forloop.counter }}</td>
                     <td>{{ user.User_id }}</td>
@@ -258,7 +258,7 @@
             {% for travellog in TravelLogs_obj %}
             <tr>
             <td>
-{#                <button>编辑</button> #}
+                <button onclick = "window.location.href = '{% url "controller:TravelInfoEdit" %}?id={{ travellog.Record_id }}'">编辑</button>
                 <button onclick = "window.location.href = '{% url "controller:TravelInfoDel" %}?id={{ forloop.counter }}'">删除</button>
             </td>
                 <td>{{ forloop.counter }}</td>
@@ -293,7 +293,7 @@
             {% for site in SiteInfos_obj %}
                 <tr>
                 <td>
-{#                        <button>编辑</button> #}
+                        <button onclick = "window.location.href = '{% url "controller:SiteInfoEdit" %}?id={{ site.Site_id }}'">编辑</button>
                         <button onclick = "window.location.href = '{% url "controller:SiteInfoDel" %}?id={{ forloop.counter }}'">删除</button>
                     </td>
                     <td>{{ forloop.counter }}</td>
@@ -328,7 +328,7 @@
             {% for station in StationInfos_obj %}
                 <tr>
                 <td>
-{#                        <button>编辑</button> #}
+                        <button onclick = "window.location.href = '{% url "controller:StationInfoEdit" %}?id={{ station.Station_id }}'">编辑</button>
                         <button onclick = "window.location.href = '{% url "controller:StationInfoDel" %}?id={{ forloop.counter }}'">删除</button>
                     </td>
                     <td>{{ forloop.counter }}</td>
