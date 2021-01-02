@@ -1,0 +1,15 @@
+{% extends 'controller/InfoChangeBase.html' %}
+
+{% block Title %}
+    编辑场地信息
+{% endblock %}
+
+{% block h1 %}
+    编辑场地信息
+{% endblock %}
+
+{% block ShowData %}
+    <p>场地名称：<input type="text" name="Site_Name" value="{{ SiteInfoObj.Site_Name }}"></p>
+    <p>场地坐标经度：<input type="text" name="Center_PosX" value="{{ SiteInfoObj.Center_PosX }}"></p>
+    <p>场地坐标纬度：<input type="text" name="Center_PosY" value="{{ SiteInfoObj.Center_PosY }}"></p>
+{% endblock %}

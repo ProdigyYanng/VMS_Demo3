@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,21 +6,30 @@
     <title>新增信息</title>
 </head>
 <body style="background-color: #030829">
+=======
+{% extends 'controller/InfoChangeBase.html' %}
+>>>>>>> develop
 
-<form action="" method="post"> {% csrf_token %}
+{% block Title %}
+    新增故障信息
+{% endblock %}
 
+{% block h1 %}
+    新增故障信息
+{% endblock %}
 
+<<<<<<< HEAD
     <p style="color: #ffffff">故障时间：<input type="text" name="Fault_Time"></p>
     <p style="color: #ffffff">故障信息：<input type="text" name="Fault_Type"></p>
     <p style="color: #ffffff">故障车站：<input type="text" name="Fault_Station"></p>
     <p style="color: #ffffff">故障车辆id： <input type="text" name="Car_id"></p>
 {#    <p>故障车辆id：<input type="text" name="Car_id "></p>#}
+=======
+{% block ShowData %}
+    <p>故障时间：<input type="text" name="Fault_Time" required></p>
+    <p>故障信息：<input type="text" name="Fault_Type" required></p>
+    <p>故障车站：<input type="text" name="Fault_Station" required></p>
+    <p>故障车辆id： <input type="text" name="Car_id" required></p>
+{% endblock %}
+>>>>>>> develop
 
-    <button>提交</button>
-
-
-</form>
-
-
-</body>
-</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,3 +26,22 @@
 
 </body>
 </html>
+=======
+{% extends 'controller/InfoChangeBase.html' %}
+
+{% block Title %}
+    新增车辆信息
+{% endblock %}
+
+{% block h1 %} 新增车辆信息 {% endblock %}
+
+{% block ShowData %}
+    <p>车牌号：<input type="text" name="Car_License" required></p>
+    <p>车型：<input type="text" name="Car_Type" required></p>
+    <p>电量：<input type="text" name="Car_Electric_Quantity" required></p>
+    <p>里程数：<input type="text" name="Car_Mileage" required></p>
+    <p>是否在使用：<input type="text" name="Car_IsUse" required></p>
+    <p>当前经度：<input type="text" name="Car_Current_PosX" required></p>
+    <p>当前纬度：<input type="text" name="Car_Current_PosY" required></p>
+{% endblock %}
+>>>>>>> develop

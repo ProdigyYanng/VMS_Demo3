@@ -1,0 +1,18 @@
+{% extends 'controller/InfoChangeBase.html' %}
+
+{% block Title %}
+    编辑用户信息
+{% endblock %}
+
+{% block h1 %}
+    编辑用户信息
+{% endblock %}
+
+{% block ShowData %}
+    <p>用户昵称：<input type="text" name="User_Name" value="{{ UserInfoObj.User_Name }}"></p>
+    <p>联系方式：<input type="text" name="User_Tel" value="{{ UserInfoObj.User_Tel }}"></p>
+    <p>注册时间：<input type="text" name="User_Register_Time" value="{{ UserInfoObj.User_Register_Time }}"></p>
+    <p>用户身份： <input type="text" name="User_Identity" value="{{ UserInfoObj.User_Identity }}"></p>
+    <p>用户账号： <input type="text" name="UserAccount" value="{{ UserInfoObj.UserAccount }}"></p>
+    <p>用户密码： <input type="text" name="UserPwd" value="{{ UserInfoObj.UserPwd }}"></p>
+{% endblock %}

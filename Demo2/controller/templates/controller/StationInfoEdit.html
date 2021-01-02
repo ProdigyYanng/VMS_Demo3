@@ -1,0 +1,17 @@
+{% extends 'controller/InfoChangeBase.html' %}
+
+{% block Title %}
+    编辑站点信息
+{% endblock %}
+
+
+{% block h1 %}
+    编辑站点信息
+{% endblock %}
+
+{% block ShowData %}
+    <p>所属场地id：<input type="text" name="Site_id" value="{{ StationInfoObj.Site_id_id }}"></p>
+    <p>站点名称：<input type="text" name="Station_Name" value="{{ StationInfoObj.Station_Name }}"></p>
+    <p>站点经度：<input type="text" name="Station_PosX" value="{{ StationInfoObj.Station_PosX }}"></p>
+    <p>站点纬度：<input type="text" name="Station_PosY" value="{{ StationInfoObj.Station_PosY }}"></p>
+{% endblock %}

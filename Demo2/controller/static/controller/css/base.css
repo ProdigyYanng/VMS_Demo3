@@ -142,7 +142,7 @@ a:hover{
 }
 
 .nav_1{
-     background-image: url("../img/nav_1.png");
+     /*background-image: url("../img/nav_1.png");*/
  }
 .nav_2{
     background-image: url("../img/nav_2.png");
@@ -166,13 +166,13 @@ a:hover{
     background-image: url("../img/nav_9.png");
 }
 .nav_active{
-    border-bottom: 4px solid #4b8df8;
-    box-shadow: -10px 0px 15px #034c6a inset, /*å·¦è¾¹é˜´å½±*/
-    0px -10px 15px #034c6a inset, /*ä¸Šè¾¹é˜´å½±*/
-    10px 0px 15px #034c6a inset, /*å³è¾¹é˜´å½±*/
-    0px 10px 15px #034c6a inset;
+    /*border-bottom: 4px solid #4b8df8;*/
+    /*box-shadow: -10px 0px 15px #034c6a inset, !*å·¦è¾¹é˜´å½±*!*/
+    /*0px -10px 15px #034c6a inset, !*ä¸Šè¾¹é˜´å½±*!*/
+    /*10px 0px 15px #034c6a inset, !*å³è¾¹é˜´å½±*!*/
+    /*0px 10px 15px #034c6a inset;*/
 
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 .con{
     width: 100%;

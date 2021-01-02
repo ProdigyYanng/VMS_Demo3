@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,16 @@
     <title>新增信息</title>
 </head>
 <body style="background-color: #030829">
+=======
+{% extends 'controller/InfoChangeBase.html' %}
+>>>>>>> develop
 
-<form action="" method="post"> {% csrf_token %}
+{% block Title %}
+    新增用户信息
+{% endblock %}
 
 
+<<<<<<< HEAD
     <p style="color: #ffffff">用户昵称：<input type="text" name="User_Name"></p>
     <p style="color: #ffffff">联系方式：<input type="text" name="User_Tel"></p>
     <p style="color: #ffffff">注册时间：<input type="text" name="User_Register_Time"></p>
@@ -17,10 +24,18 @@
     <p style="color: #ffffff">用户账号： <input type="text" name="UserAccount"></p>
     <p style="color: #ffffff">用户密码： <input type="text" name="UserPwd"></p>
     <button>提交</button>
+=======
+{% block h1 %}
+    新增用户信息
+{% endblock %}
+>>>>>>> develop
 
-
-</form>
-
-
-</body>
-</html>
+{% block ShowData %}
+    <p>用户昵称：<input type="text" name="User_Name" required></p>
+    <p>联系方式：<input type="text" name="User_Tel" required></p>
+    <p>注册时间：<input type="text" name="User_Register_Time" required></p>
+    <p>预约车辆id： <input type="text" name="User_Ordered_Car_id" required></p>
+    <p>用户身份： <input type="text" name="User_Identity" required></p>
+    <p>用户账号： <input type="text" name="UserAccount" required></p>
+    <p>用户密码： <input type="text" name="UserPwd" required></p>
+{% endblock %}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,21 +6,30 @@
     <title>新增信息</title>
 </head>
 <body style="background-color: #030829">
+=======
+{% extends 'controller/InfoChangeBase.html' %}
+>>>>>>> develop
 
-<form action="" method="post"> {% csrf_token %}
 
+{% block Title %}
+    新增站点信息
+{% endblock %}
 
+<<<<<<< HEAD
     <p style="color: #ffffff">所属场地id：<input type="text" name="Site_id"></p>
     <p style="color: #ffffff">站点名称：<input type="text" name="Station_Name"></p>
     <p style="color: #ffffff">站点经度：<input type="text" name="Station_PosX"></p>
     <p style="color: #ffffff">站点纬度：<input type="text" name="Station_PosY"></p>
 {#    <p>故障车辆id：<input type="text" name="Car_id "></p>#}
+=======
+{% block h1 %}
+    新增站点信息
+{% endblock %}
+>>>>>>> develop
 
-    <button>提交</button>
-
-
-</form>
-
-
-</body>
-</html>
+{% block ShowData %}
+    <p>所属场地id：<input type="text" name="Site_id" required></p>
+    <p>站点名称：<input type="text" name="Station_Name" required></p>
+    <p>站点经度：<input type="text" name="Station_PosX" required></p>
+    <p>站点纬度：<input type="text" name="Station_PosY" required></p>
+{% endblock %}

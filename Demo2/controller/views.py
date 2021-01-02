@@ -40,6 +40,7 @@ def index(request):
     #     print(car.Car_Electric_Quantity)
 
     all_cars = models.CarInfo.objects.order_by('-Car_Electric_Quantity')  # 5个车辆基本信息
+    all_cars_noOrder = models.CarInfo.objects.all()  # 5个车辆基本信息
     Display_Cals = all_cars[:5]  # 展示的车辆
     CarsNum = models.CarInfo.objects.all().count()  # 汽车总数
     CarsUsedNum = models.CarInfo.objects.filter(Car_IsUse=True).count()  # 汽车使用数
@@ -48,11 +49,13 @@ def index(request):
     CarsTimeNum = models.TravelLog.objects.all().aggregate(Sum('Traveled_Time'))['Traveled_Time__sum']  # 行驶总时长 min
     CarsAverTimeNum = CarsTimeNum / CarsNum  # 每辆车平均行驶时长 min
     CarsCanUse = models.CarInfo.objects.filter(Car_IsUse=False).order_by('-Car_Electric_Quantity')[:5]  # 所有可约车辆信息
-
     # FailureRecord = models.CarFailureLog.objects.values('Car_id').distinct()[:5]# 所有故障车辆信息
     all_FailureRecords = models.CarFailureLog.objects.all()
     Display_FailureRecords = all_FailureRecords[:5]  # todo 这里的故障车辆的外键的反向查询的去重操作还没实现 需要仔细研究
 
+    Display_Cals_Num = len(Display_Cals)
+    CarsCanUseNum = len(CarsCanUse)
+    Display_FailureRecords_Num = len(Display_FailureRecords)
     # for record in all_FailureRecords:
     #     print(record.Car_id.Car_License)
     # car = models.CarInfo.objects.get(Car_id=car['Car_id'])
@@ -84,6 +87,11 @@ def index(request):
         'UserName': UserName,
         'UserIdentity': UserIdentity,
         'CarsAllInfo': all_cars,
+        'all_cars_noOrder': all_cars_noOrder,
+
+        'Display_Cals_Num': Display_Cals_Num,
+        'CarsCanUseNum': CarsCanUseNum,
+        'Display_FailureRecords_Num': Display_FailureRecords_Num,
     })
 
 
@@ -108,6 +116,12 @@ def CRUD(request):
     StationInfos_obj = models.StationInfo.objects.all()
     UserInfos_obj = models.UserInfo.objects.all()
 
+    CarsNum = models.CarInfo.objects.all().count()  # 汽车总数
+    CarsUsedNum = models.CarInfo.objects.filter(Car_IsUse=True).count()  # 汽车使用数
+    CarsMileageNum = models.CarInfo.objects.all().aggregate(Sum('Car_Mileage'))['Car_Mileage__sum']  # 行驶总里程数
+    CarsMileageAverNum = CarsMileageNum / CarsNum  # 行驶平均里程数
+    CarsTimeNum = models.TravelLog.objects.all().aggregate(Sum('Traveled_Time'))['Traveled_Time__sum']  # 行驶总时长 min
+    CarsAverTimeNum = CarsTimeNum / CarsNum  # 每辆车平均行驶时长 min
 
     # User_Ordered_Car_id =
 
@@ -174,6 +188,33 @@ def CarInfoDel(request):
     models.CarInfo.objects.filter(pk=pk).delete()
     return redirect('controller:CRUD')
 
+def CarInfoEdit(request):
+    pk = request.GET.get('id')
+    CarObj = models.CarInfo.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        return render(request, 'controller/CarInfoEdit.html', {'CarObj': CarObj})
+
+    elif request.method == 'POST':
+        Car_License = request.POST.get('Car_License')
+        Car_Type = request.POST.get('Car_Type')
+        Car_Electric_Quantity = request.POST.get('Car_Electric_Quantity')
+        Car_Mileage = request.POST.get('Car_Mileage')
+        Car_IsUse = request.POST.get('Car_IsUse')
+        Car_Current_PosX = request.POST.get('Car_Current_PosX')
+        Car_Current_PosY = request.POST.get('Car_Current_PosY')
+
+        CarObj.Car_License = Car_License
+        CarObj.Car_Type = Car_Type
+        CarObj.Car_Electric_Quantity = Car_Electric_Quantity
+        CarObj.Car_Mileage = Car_Mileage
+        CarObj.Car_IsUse = Car_IsUse
+        CarObj.Car_Current_PosX = Car_Current_PosX
+        CarObj.Car_Current_PosY = Car_Current_PosY
+
+        CarObj.save()
+        return redirect('controller:CRUD')
+    return redirect('controller:CRUD')
 
 def FailureInfoAdd(request):
     if request.method == 'POST':
@@ -198,6 +239,27 @@ def FailureInfoDel(request):
     models.CarFailureLog.objects.filter(pk=pk).delete()
     return redirect('controller:CRUD')
 
+def FailureInfoEdit(request):
+    pk = request.GET.get('id')
+    FailureInfoObj = models.CarFailureLog.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        return render(request, 'controller/FailureInfoEdit.html', {'FailureInfoObj': FailureInfoObj})
+
+    elif request.method == 'POST':
+        Fault_Time = request.POST.get('Fault_Time')
+        Fault_Type = request.POST.get('Fault_Type')
+        Fault_Station = request.POST.get('Fault_Station')
+        Car_id = request.POST.get('Car_id')
+
+        FailureInfoObj.Fault_Time = Fault_Time
+        FailureInfoObj.Fault_Type = Fault_Type
+        FailureInfoObj.Fault_Station = Fault_Station
+        FailureInfoObj.Car_id = Car_id
+
+        FailureInfoObj.save()
+        return redirect('controller:CRUD')
+    return redirect('controller:CRUD')
 
 def UserInfoAdd(request):
     if request.method == 'POST':
@@ -234,6 +296,36 @@ def UserInfoDel(request):
     models.UserInfo.objects.filter(pk=pk).delete()
     return redirect('controller:CRUD')
 
+def UserInfoEdit(request):
+    pk = request.GET.get('id')
+    UserInfoObj = models.UserInfo.objects.get(pk=pk)
+    # UserInfo_User_Ordered_Car_id
+
+    if request.method == 'GET':
+        return render(request, 'controller/UserInfoEdit.html', {'UserInfoObj': UserInfoObj})
+
+    elif request.method == 'POST':
+        User_Name = request.POST.get('User_Name')
+        User_Tel = request.POST.get('User_Tel')
+        User_Register_Time = request.POST.get('User_Register_Time')
+        # User_Ordered_Car_id = request.POST.get('User_Ordered_Car_id')
+        User_Identity = request.POST.get('User_Identity')
+        UserAccount = request.POST.get('UserAccount')
+        UserPwd = request.POST.get('UserPwd')
+
+        UserInfoObj.User_Name = User_Name
+        UserInfoObj.User_Tel = User_Tel
+        UserInfoObj.User_Register_Time = User_Register_Time
+        # UserInfoObj.User_Ordered_Car_id.CarInfo_id = User_Ordered_Car_id
+        # user = models.UserInfo.objects.get(User_id=pk)
+        # UserInfoObj.User_Ordered_Car_id.set([User_Ordered_Car_id])
+        UserInfoObj.User_Identity = User_Identity
+        UserInfoObj.UserAccount = UserAccount
+        UserInfoObj.UserPwd = UserPwd
+
+        UserInfoObj.save()
+        return redirect('controller:CRUD')
+    return redirect('controller:CRUD')
 
 def TravelInfoAdd(request):
     if request.method == 'POST':
@@ -256,6 +348,29 @@ def TravelInfoDel(request):
     models.TravelLog.objects.filter(pk=pk).delete()
     return redirect('controller:CRUD')
 
+def TravelInfoEdit(request):
+    # GET返回一个页面
+    # POST提交修改数据
+    pk = request.GET.get('id')
+    TravelLogObj = models.TravelLog.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        return render(request, 'controller/TravelInfoEdit.html', {'TravelLogObj': TravelLogObj})
+    elif request.method == 'POST':
+        Start_Time = request.POST.get('Start_Time')
+        Traveled_Time = round(float(request.POST.get('Traveled_Time')), 2)
+        Travel_Site = int(request.POST.get('Travel_Site'))
+        Car_id = int(request.POST.get('Car_id'))
+
+
+        TravelLogObj.Start_Time = Start_Time
+        TravelLogObj.Traveled_Time = Traveled_Time
+        TravelLogObj.Travel_Site_id = Travel_Site
+        TravelLogObj.Car_id_id = Car_id
+
+        TravelLogObj.save()
+        return redirect('controller:CRUD')
+    return redirect('controller:CRUD')
 
 def SiteInfoAdd(request):
     if request.method == 'POST':
@@ -274,6 +389,27 @@ def SiteInfoAdd(request):
 def SiteInfoDel(request):
     pk = request.GET.get('id')
     models.SiteInfo.objects.filter(pk=pk).delete()
+    return redirect('controller:CRUD')
+
+def SiteInfoEdit(request):
+    # GET返回一个页面
+    # POST提交修改数据
+    pk = request.GET.get('id')
+    SiteInfoObj = models.SiteInfo.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        return render(request, 'controller/SiteInfoEdit.html', {'SiteInfoObj': SiteInfoObj})
+    elif request.method == 'POST':
+        Site_Name = request.POST.get('Site_Name')
+        Center_PosX = request.POST.get('Center_PosX')
+        Center_PosY = request.POST.get('Center_PosY')
+
+        SiteInfoObj.Site_Name = Site_Name
+        SiteInfoObj.Center_PosX = Center_PosX
+        SiteInfoObj.Center_PosY = Center_PosY
+
+        SiteInfoObj.save()
+        return redirect('controller:CRUD')
     return redirect('controller:CRUD')
 
 def StationInfoAdd(request):
@@ -295,4 +431,27 @@ def StationInfoAdd(request):
 def StationInfoDel(request):
     pk = request.GET.get('id')
     models.StationInfo.objects.filter(pk=pk).delete()
+    return redirect('controller:CRUD')
+
+def StationInfoEdit(request):
+    # GET返回一个页面
+    # POST提交修改数据
+    pk = request.GET.get('id')
+    StationInfoObj = models.StationInfo.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        return render(request, 'controller/StationInfoEdit.html', {'StationInfoObj': StationInfoObj})
+    elif request.method == 'POST':
+        Site_id = int(request.POST.get('Site_id'))
+        Station_Name = request.POST.get('Station_Name')
+        Station_PosX = request.POST.get('Station_PosX')
+        Station_PosY = request.POST.get('Station_PosX')
+
+        StationInfoObj.Site_id_id = Site_id
+        StationInfoObj.Station_Name = Station_Name
+        StationInfoObj.Station_PosX = Station_PosX
+        StationInfoObj.Station_PosY = Station_PosY
+
+        StationInfoObj.save()
+        return redirect('controller:CRUD')
     return redirect('controller:CRUD')

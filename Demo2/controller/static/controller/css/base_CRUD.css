@@ -1029,3 +1029,36 @@ border-radius: 3px;
     text-align: center;
     vertical-align: middle;
 }
+
+.AddBtn{
+    display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+    float: right;
+    margin-right: 20px;
+}
+
+.AddBtn-primary {
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+table tbody tr:not(:first-child) td:last-child{
+    width: 100px;
+}

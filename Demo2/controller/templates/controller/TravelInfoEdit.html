@@ -1,0 +1,16 @@
+{% extends 'controller/InfoChangeBase.html' %}
+
+{% block Title %}
+    编辑行驶记录
+{% endblock %}
+
+{% block h1 %}
+    编辑行驶记录
+{% endblock %}
+
+{% block ShowData %}
+    <p>开始时间：<input type="text" name="Start_Time" value="{{ TravelLogObj.Start_Time }}"></p>
+    <p>已运行时间：<input type="text" name="Traveled_Time" value="{{ TravelLogObj.Traveled_Time }}"></p>
+    <p>场地id：<input type="text" name="Travel_Site" value="{{ TravelLogObj.Travel_Site.Site_id }}"></p>
+    <p>行驶车辆id： <input type="text" name="Car_id" value="{{ TravelLogObj.Car_id.Car_id }}"></p>
+{% endblock %}
