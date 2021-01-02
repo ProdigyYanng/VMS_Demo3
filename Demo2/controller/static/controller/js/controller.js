@@ -5,7 +5,7 @@ for (var i = 0; i < CarsNum; i++) {
     CenterX += CarsPos[i]['carPosX'];
     CenterY += CarsPos[i]['carPosY'];
 }
-<<<<<<< HEAD
+
 var center = [CenterX/CarsNum, CenterY/CarsNum]; // 中心点
 
         // var position = new AMap.LngLat(116, 39);//标准写法 经度在前 纬度在后
@@ -29,7 +29,7 @@ var center = [CenterX/CarsNum, CenterY/CarsNum]; // 中心点
                 icon: icon_str,
             })
         }
-=======
+
 var center = [CenterX / CarsNum, CenterY / CarsNum]; // 中心点
 
 // var position = new AMap.LngLat(116, 39);//标准写法 经度在前 纬度在后
@@ -52,7 +52,7 @@ for (var i = 0; i < CarsNum; i++) {
         icon: icon_str,
     })
 }
->>>>>>> develop
+
 
 // var marker1 = new AMap.Marker({
 //     position: [116.39, 39.9], //位置
