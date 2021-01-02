@@ -10,7 +10,7 @@ import time
 def ClearSession(func): # 60秒后验证失败需要重新登录
     def wrapper(request):
         f = func(request)
-        request.session.set_expiry(60)
+        request.session.set_expiry(600)
         return f
     return wrapper
 
@@ -40,6 +40,7 @@ def index(request):
     #     print(car.Car_Electric_Quantity)
 
     all_cars = models.CarInfo.objects.order_by('-Car_Electric_Quantity')  # 5个车辆基本信息
+    all_cars_noOrder = models.CarInfo.objects.all()  # 5个车辆基本信息
     Display_Cals = all_cars[:5]  # 展示的车辆
     CarsNum = models.CarInfo.objects.all().count()  # 汽车总数
     CarsUsedNum = models.CarInfo.objects.filter(Car_IsUse=True).count()  # 汽车使用数
@@ -86,6 +87,7 @@ def index(request):
         'UserName': UserName,
         'UserIdentity': UserIdentity,
         'CarsAllInfo': all_cars,
+        'all_cars_noOrder': all_cars_noOrder,
 
         'Display_Cals_Num': Display_Cals_Num,
         'CarsCanUseNum': CarsCanUseNum,
@@ -138,6 +140,8 @@ def CRUD(request):
         'CarsTimeNum': CarsTimeNum,
         'CarsAverTimeNum': round(CarsAverTimeNum, 3),
     }
+
+
 
     return render(request, 'controller/CRUD.html', context=data)
 

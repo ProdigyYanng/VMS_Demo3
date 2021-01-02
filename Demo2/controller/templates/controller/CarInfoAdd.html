@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>新增信息</title>
-</head>
-<body>
+{% extends 'controller/InfoChangeBase.html' %}
 
-<form action="" method="post"> {% csrf_token %}
+{% block Title %}
+    新增车辆信息
+{% endblock %}
 
+{% block h1 %} 新增车辆信息 {% endblock %}
 
-    <p>车牌号：<input type="text" name="Car_License"></p>
-    <p>车型：<input type="text" name="Car_Type"></p>
-    <p>电量：<input type="text" name="Car_Electric_Quantity"></p>
-    <p>里程数：<input type="text" name="Car_Mileage"></p>
-    <p>是否在使用：<input type="text" name="Car_IsUse"></p>
-    <p>当前经度：<input type="text" name="Car_Current_PosX"></p>
-    <p>当前纬度：<input type="text" name="Car_Current_PosY"></p>
-
-    <button>提交</button>
-
-
-</form>
-
-
-</body>
-</html>
+{% block ShowData %}
+    <p>车牌号：<input type="text" name="Car_License" required></p>
+    <p>车型：<input type="text" name="Car_Type" required></p>
+    <p>电量：<input type="text" name="Car_Electric_Quantity" required></p>
+    <p>里程数：<input type="text" name="Car_Mileage" required></p>
+    <p>是否在使用：<input type="text" name="Car_IsUse" required></p>
+    <p>当前经度：<input type="text" name="Car_Current_PosX" required></p>
+    <p>当前纬度：<input type="text" name="Car_Current_PosY" required></p>
+{% endblock %}

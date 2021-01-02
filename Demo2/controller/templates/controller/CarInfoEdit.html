@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>新增信息</title>
-</head>
-<body>
+{% extends 'controller/InfoChangeBase.html' %}
 
-<form action="" method="post"> {% csrf_token %}
+{% block Title %}
+    编辑车辆信息
+{% endblock %}
 
+{% block h1 %}
+    编辑车辆信息
+{% endblock %}
 
+{% block ShowData %}
     <p>车牌号：<input type="text" name="Car_License" value="{{ CarObj.Car_License }}"></p>
     <p>车型：<input type="text" name="Car_Type" value="{{ CarObj.Car_Type }}"></p>
     <p>电量：<input type="text" name="Car_Electric_Quantity" value="{{ CarObj.Car_Electric_Quantity }}"></p>
@@ -16,12 +16,4 @@
     <p>是否在使用：<input type="text" name="Car_IsUse" value="{{ CarObj.Car_IsUse }}"></p>
     <p>当前经度：<input type="text" name="Car_Current_PosX" value="{{ CarObj.Car_Current_PosX }}"></p>
     <p>当前纬度：<input type="text" name="Car_Current_PosY" value="{{ CarObj.Car_Current_PosY }}"></p>
-
-    <button>提交</button>
-
-
-</form>
-
-
-</body>
-</html>
+{% endblock %}

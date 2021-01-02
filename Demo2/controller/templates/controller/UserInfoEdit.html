@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>新增信息</title>
-</head>
-<body>
+{% extends 'controller/InfoChangeBase.html' %}
 
-<form action="" method="post"> {% csrf_token %}
+{% block Title %}
+    编辑用户信息
+{% endblock %}
 
+{% block h1 %}
+    编辑用户信息
+{% endblock %}
 
+{% block ShowData %}
     <p>用户昵称：<input type="text" name="User_Name" value="{{ UserInfoObj.User_Name }}"></p>
     <p>联系方式：<input type="text" name="User_Tel" value="{{ UserInfoObj.User_Tel }}"></p>
     <p>注册时间：<input type="text" name="User_Register_Time" value="{{ UserInfoObj.User_Register_Time }}"></p>
-{#    <p>预约车辆id： <input type="text" name="User_Ordered_Car_id" value="{{ UserInfoObj.User_Ordered_Car_id }}"></p>#}
     <p>用户身份： <input type="text" name="User_Identity" value="{{ UserInfoObj.User_Identity }}"></p>
     <p>用户账号： <input type="text" name="UserAccount" value="{{ UserInfoObj.UserAccount }}"></p>
     <p>用户密码： <input type="text" name="UserPwd" value="{{ UserInfoObj.UserPwd }}"></p>
-    <button>提交</button>
-
-
-</form>
-
-
-</body>
-</html>
+{% endblock %}

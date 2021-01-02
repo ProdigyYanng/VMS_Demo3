@@ -23,7 +23,7 @@ for (var i = 0; i < CarsNum; i++) {
     if (CarsPos[i]['carIsUse'] === 'True') icon_str = "https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png";
     markers[i] = new AMap.Marker({
         position: position,
-        title: '序号：' + CarsPos[i]['carid']+' 车牌：'+ CarsPos[i]['carLicense'] + ' 电量：' + CarsPos[i]['carEQ'],
+        title: '序号：' + CarsPos[i]['carid'] + ' 车牌：' + CarsPos[i]['carLicense'] + ' 电量：' + CarsPos[i]['carEQ'],
         icon: icon_str,
     })
 }
@@ -99,11 +99,54 @@ MoreBtn = document.getElementsByClassName("btn btn-danger btn-sm"); // 详情按
 //     }
 // }
 //
-for (var i = 0; i < CarsNum; i++) {
+// 1 8 2 6 3
+// 左下角的展示
+for (let i = 0; i < Display_Cals_Num; i++) {
     MoreBtn[i].onclick = function () {
-        map.setFitView(markers);
+        map.setFitView(markers[i]);
     }
 }
+// 右上角
+let j = 0;
+for (let i = 0; i < CarsNum; i++) {
+    if (CarsPos[i]['carIsUse'] === 'False') {
+        MoreBtn[j + Display_Cals_Num].onclick = function () {
+            map.setFitView(markers[CarsPos[i]['carid']]);
+        }
+        j++;
+    }
+}
+// // 右上角 8 2 5 7
+// seq = new Array();
+// for (let i = 0; i < CarsNum; i++) {
+//     if (CarsPos[i]['carIsUse'] === 'true') console.log(CarsPos[i]['carid']);
+// }
+//
+// MoreBtn[5].onclick = function () {
+//     map.setFitView(markers[8]);
+// }
+// MoreBtn[6].onclick = function () {
+//     map.setFitView(markers[2]);
+// }
+// MoreBtn[7].onclick = function () {
+//     map.setFitView(markers[5]);
+// }
+// MoreBtn[8].onclick = function () {
+//     map.setFitView(markers[7]);
+// }
+// for (let i = 0; i < CarsNum; i++) {
+//     if (CarsPos[i]['carIsUse'] !== 'False') {
+//     MoreBtn[i + Display_Cals_Num].onclick = function () {
+//         map.setFitView(markers[i]);
+//     }
+//     }
+// }
+
+// for (var i = 0; i < CarsNum; i++) {
+//     MoreBtn[i].onclick = function () {
+//         map.setFitView(markers);
+//     }
+// }
 
 // document.querySelectorAll("#MoreBtn").onclick=function () {
 //     map.setFitView();

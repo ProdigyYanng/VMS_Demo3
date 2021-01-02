@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>新增信息</title>
-</head>
-<body>
+{% extends 'controller/InfoChangeBase.html' %}
+{% block Title %}
+    编辑故障信息
+{% endblock %}
 
-<form action="" method="post"> {% csrf_token %}
+{% block h1 %}
+    编辑故障信息
+{% endblock %}
 
-
+{% block ShowData %}
     <p>故障时间：<input type="text" name="Fault_Time" value="{{ FailureInfoObj.Fault_Time }}"></p>
     <p>故障信息：<input type="text" name="Fault_Type" value="{{ FailureInfoObj.Fault_Type }}"></p>
     <p>故障车站：<input type="text" name="Fault_Station" value="{{ FailureInfoObj.Fault_Station.Station_id }}"></p>
     <p>故障车辆id： <input type="text" name="Car_id" value="{{ FailureInfoObj.Car_id.Car_id }}"></p>
-{#    <p>故障车辆id：<input type="text" name="Car_id "></p>#}
-
-    <button>提交</button>
-
-
-</form>
-
-
-</body>
-</html>
+{% endblock %}

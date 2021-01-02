@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block Title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static "controller/css/InfoChangeBase_css.css" %}">
+</head>
+
+<body>
+
+<div id="login">
+    <h1>{% block h1 %}  {% endblock %}</h1>
+    <form class="ShowDataForm" action="" method="POST"> {% csrf_token %}
+
+{% block ShowData %} {% endblock %}
+
+<button class="but">提交</button>
+</form>
+</div>
+
+
+</body>
+
+
+
+</html>
